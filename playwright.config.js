@@ -7,6 +7,6 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
   },
   use: {
-    baseURL: 'http://localhost:3001/',
+    baseURL: 'http://localhost:3001',
   },
 })
