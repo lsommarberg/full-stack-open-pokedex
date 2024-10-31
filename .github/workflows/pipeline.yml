@@ -25,6 +25,15 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Notify Failure
+        if: ${{ failure() }}
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: error
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          details: commit ${{ github.sha }} broke the build
+          text: Build failed!
+
       - name: Run tests
         run: npm run test
 
@@ -37,6 +46,16 @@ jobs:
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' &&  !contains(github.event.head_commit.message, '#skip') }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
+
+      - name: Notify Success
+        if: ${{ success() }}
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: success
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          details: Deployment succeeded!
+          text: A new version of Pokedex deployed!
+  
 
   tag_release:
     needs: [simple_deployment_pipeline]
