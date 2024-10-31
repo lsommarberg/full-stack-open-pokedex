@@ -30,9 +30,8 @@ jobs:
         uses: stegzilla/discord-notify@v2
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          message: |
-            **Build failed!**
-            Commit ${{ github.sha }} broke the build
+          title: Deployment failed!
+          message: Commit ${{ github.sha }} broke the build
 
       - name: Run tests
         run: npm run test
@@ -52,9 +51,8 @@ jobs:
         uses: stegzilla/discord-notify@v2
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          message: |
-            **Deployment succeeded!**
-            A new version of Pokedex deployed!
+          title: Deployment succeeded!
+          message: A new version of Pokedex deployed!
   
 
   tag_release:
