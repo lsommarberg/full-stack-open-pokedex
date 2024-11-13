@@ -18,3 +18,7 @@ Start by running `npm install` inside the project folder
 ## 11.20 repo
 
 [Link to the other repository](https://github.com/lsommarberg/pipeline-exercise.git)
+
+[Link to pokedex app](https://full-stack-open-pokedex-tk93.onrender.com)
+
+[Link to the other app](https://pipeline-exercise.onrender.com)
